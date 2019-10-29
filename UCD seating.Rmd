@@ -1,6 +1,6 @@
 ---
 title: "Student Sit In"
-author: "your name here"
+author: "Servio Maldonado"
 date: "10/26/2019"
 output: 
   html_document:
@@ -22,7 +22,7 @@ Students at UCD- is there a relation between where one sits and one's major?
 
 <!-- where is the data found?  Is this an experiment or an observational study?  !-->
 
-Data from this study came from... 
+Data from this study came from the UCDataframe with multiple variables out of 173 students.
 
 
 
@@ -37,7 +37,6 @@ $H_A$: where one sits in class and one's major are related
 
 <!-- Get the data: !-->
 
-names of the data in the data frame
 
 ```{r echo=FALSE}
 UCDdataframe = data.frame(seat=ucdavis1$Seat, major=ucdavis1$class, data=ucdavis1)
@@ -49,42 +48,49 @@ names(UCDdataframe)
 what are the variable types, and indicate gaphical, numerical, and inferential methods appropriate
 for this question  !--> 
 
+The Methods that we will be using for this experiment are graphical barcharts, numerical tables and inferential methods to find the p-value to find out if there is any correlation between where one sits and ones major.
 
 ## Data summary
 
 **Graphical summary**
-put the graphic description of the data here
+
 
 ```{r}
+barchartGC(~seat+major, data=UCDdataframe, main='seating+major ', type='percent', xlab='seat')
 
 ```
 
-Explain what the graph shows
+
+The graph shows that Non-Liberal Arts majors prefer the back and middle seats a little more than the front but not by much and Liberal Arts majors prefer the front more than the middle and back. But neither likes one seat predominantly more than the other.
 
 
 **Numerical summary**
-put numerical summary here
+
 
 ```{r}
-
+xtab=xtabs(~seat+major,data=UCDdataframe)
+print(xtab)
 ```
 
-Explain what the numeric summary says
+There is not much of a difference between seating preference between majors.
+
 
 ## Inferential Results
-put the inferential test for the the null hypothesis here
+
 
 ```{r}
 
+chisqtestGC(xtab)
 ```
 
-what is the p-value?
+The P-Value is 0.2173 > 0.05 suggest there is no connection between where one sits and ones major.
 
 ## Results and conclusions
 
 <!-- explain-- is there evidence that certain majors tend to sit in particular areas of the class?  Can the results of this test be generalized to all majors in all universities? !-->
 
-explain the result, can the result be generalized?
+There is no evidence that certain majors lend to sit in particular areas of the class. The P-value was 0.2173 which is greater than 0.05 so we fail to reject the hypothesis.
+
 
 <!--
 push results to your github account, turn in the URL
